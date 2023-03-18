@@ -22,6 +22,7 @@ class PreprocessingPipeline(object):
 class InferenceONNX(object):
     def __init__(self,model_path:str) -> None:
         self.model_path = model_path
+        self.load_model()
         
     def load_model(self):
         #load onnx

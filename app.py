@@ -15,8 +15,8 @@ def init():
     preprocess_pipeline = PreprocessingPipeline()
 
 def __run_a_test(path_img,result):
-    global model
-    global preprocess_pipeline
+    model = InferenceONNX("model_onnx/pytorch_model.onnx")
+    preprocess_pipeline = PreprocessingPipeline()
     
     image = Image.open(path_img)
     image = preprocess_pipeline.forward(image)
@@ -30,7 +30,7 @@ def __run_preset_test():
     results = {}
     
     results["n01440764_tench.jpeg"] = __run_a_test(os.path.join("test_images","n01440764_tench.jpeg"),0)
-    results["n01667114_mud_turtle.JPEG"] = __run_a_test(os.path.join("test_images","n01667114_mud_turtle.JPEG"),0)
+    results["n01667114_mud_turtle.JPEG"] = __run_a_test(os.path.join("test_images","n01667114_mud_turtle.JPEG"),35)
     
     return results
         
@@ -39,8 +39,8 @@ def __run_preset_test():
 # Inference is ran for every server call
 # Reference your preloaded global model variable here.
 def inference(model_inputs:dict) -> dict:
-    global model
-    global preprocess_pipeline
+    model = InferenceONNX("model_onnx/pytorch_model.onnx")
+    preprocess_pipeline = PreprocessingPipeline()
 
     # Parse Input
     
@@ -58,3 +58,7 @@ def inference(model_inputs:dict) -> dict:
         return result
     else:
         return __run_preset_test()
+    
+if __name__ == "__main__":
+    print(inference({"file_path":"test_images/n01667114_mud_turtle.JPEG"}))
+    print(inference({"test":True}))
