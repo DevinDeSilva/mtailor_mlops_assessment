@@ -17,6 +17,7 @@ ADD server.py .
 # Add your model weight files 
 # (in this case we have a python script)
 ADD download.py .
+ADD model_onnx/pytorch_model.onnx model_onnx/pytorch_model.onnx
 RUN python3 download.py
 
 
