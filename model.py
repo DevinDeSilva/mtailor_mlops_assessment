@@ -45,4 +45,4 @@ class InferenceONNX(object):
         ort_inputs = {self.ort_session.get_inputs()[0].name: InferenceONNX.to_numpy(x)}
         ort_outs = self.ort_session.run(None, ort_inputs)
         
-        return np.argmax(ort_outs[0])
+        return int(np.argmax(ort_outs[0]))
