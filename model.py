@@ -16,6 +16,7 @@ class PreprocessingPipeline(object):
     def forward(self,x):
         x = self.transform_pipeline(x).unsqueeze(0) 
         return x
+    
 
 
 class InferenceONNX(object):
