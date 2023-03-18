@@ -21,12 +21,14 @@ ADD model.py .
 # (in this case we have a python script)
 ADD download.py .
 
-ADD model_onnx/pytorch_model.onnx model_onnx/pytorch_model.onnx
 RUN python3 download.py
 
 
 # Add your custom app code, init() and inference()
 ADD app.py .
+ADD model_onnx/pytorch_model.onnx model_onnx/pytorch_model.onnx
+ADD test_images/n01440764_tench.jpeg test_images/n01440764_tench.jpeg
+ADD test_images/n01667114_mud_turtle.JPEG test_images/n01667114_mud_turtle.JPEG
 
 EXPOSE 8000
 
