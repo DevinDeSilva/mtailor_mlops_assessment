@@ -132,4 +132,3 @@ dmypy.json
 #Local Files
 test_images
 model_weights
-model_onnx

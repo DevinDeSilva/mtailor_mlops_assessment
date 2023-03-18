@@ -1,4 +1,5 @@
 from model import *
+from PIL import Image
 import torch
 
 # Init is ran on server startup
@@ -17,13 +18,12 @@ def inference(model_inputs:dict) -> dict:
     global model
     global preprocess_pipeline
 
-    # Parse out your arguments
-    prompt = model_inputs.get('prompt', None)
-    if prompt == None:
-        return {'message': "No prompt provided"}
+    # Parse Input
+    image = Image.open(model_inputs["file_path"])
+    image = preprocess_pipeline.forward(image)
     
     # Run the model
-    result = model(prompt)
+    result = model.forward(image)
 
     # Return the results as a dictionary
     return result
