@@ -228,6 +228,12 @@ class Classifier(nn.Module):
                     nn.init.constant_(m.bn3.weight, 0)  # type: ignore[arg-type]
                 elif isinstance(m, BasicBlock) and m.bn2.weight is not None:
                     nn.init.constant_(m.bn2.weight, 0)  # type: ignore[arg-type]
+        
+        #Pipeline Object creation.
+        self.resize = transforms.Resize((224, 224))   #must same as here
+        self.crop = transforms.CenterCrop((224, 224))
+        self.to_tensor = transforms.ToTensor()
+        self.normalize = transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 
     def _make_layer(
         self,
@@ -298,15 +304,11 @@ class Classifier(nn.Module):
     def forward(self, x: Tensor) -> Tensor:
         return self._forward_impl(x)
 
-    def preprocess_numpy(self, img):
-        resize = transforms.Resize((224, 224))   #must same as here
-        crop = transforms.CenterCrop((224, 224))
-        to_tensor = transforms.ToTensor()
-        normalize = transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-        img = resize(img)
-        img = crop(img)
-        img = to_tensor(img)
-        img = normalize(img)
+    def preprocess_numpy(self, img) -> torch.Tensor:
+        img = self.resize(img)
+        img = self.crop(img)
+        img = self.to_tensor(img)
+        img = self.normalize(img)
         return img
 
 
