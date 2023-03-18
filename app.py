@@ -19,6 +19,7 @@ def inference(model_inputs:dict) -> dict:
     global preprocess_pipeline
 
     # Parse Input
+    print(model_inputs)
     image = Image.open(model_inputs["file_path"])
     image = preprocess_pipeline.forward(image)
     
