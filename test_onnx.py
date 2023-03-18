@@ -52,6 +52,6 @@ def test_onnx(file_path = "test_images/n01667114_mud_turtle.jpeg",y_true=35,
     print("Exported model has been tested with ONNXRuntime, and the result looks good!")
 
 if __name__ == "__main__":
-    test_onnx()
+    test_onnx(file_path="test_images/n01667114_mud_turtle.JPEG",y_true = 35)
     print("  \n")
     test_onnx(file_path="test_images/n01440764_tench.jpeg",y_true = 0)

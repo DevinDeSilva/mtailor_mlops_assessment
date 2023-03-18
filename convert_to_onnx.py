@@ -24,12 +24,10 @@ def init_model(device,weight_path:str="model_weights/pytorch_model_weights.pth")
     mtailor.to(device)
     return mtailor
 
-def test_onnx_model(model_loc = f"model_onnx/pytorch_model.onnx"):
-    pass
-
 def create_onnx_model(torch_model,batch_size=32,save_dir="model_onnx",save_name="pytorch_model.onnx",device=device):
     os.makedirs(save_dir,exist_ok=True)
     x = torch.randn(batch_size, 3, 224, 224, requires_grad=True).to(device)
+    torch_model.eval()
     torch.onnx.export(torch_model,               # model being run
                   x,                         # model input (or a tuple for multiple inputs)
                   f"{save_dir}/{save_name}",   # where to save the model (can be a file or file-like object)
@@ -46,12 +44,4 @@ def create_onnx_model(torch_model,batch_size=32,save_dir="model_onnx",save_name=
 if __name__ == "__main__":
     mtailor = init_model(device)
     create_onnx_model(mtailor,device=device)
-    mtailor.eval()
-    
-    img = Image.open("./test_images/n01667114_mud_turtle.JPEG")
-    inp = mtailor.preprocess_numpy(img).unsqueeze(0) 
-    inp = inp.to(device)
-    print(inp.shape)
-    res = mtailor.forward(inp)
-
-    print(torch.argmax(res))
+    print("Created")

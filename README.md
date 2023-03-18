@@ -38,5 +38,26 @@ finally running
 python test_server.py  
 ```
 
-should run the tests I create but there is an error which that gives a server 500 But due to time constraints was unable to debug. 
+should run the tests I create but there is an error which that gives a server 500 But due to time constraints was unable to debug.
+
+## Links 
+Github:- github.com/DevinDeSilva/mtailor_mlops_assessment/tree/d417d6174f6dda28938a604280f996348c76accd
+
+
+
+
+
+convert_to_onnx.py:- www.loom.com/share/c90ef8b336d147eca39f33010da38cad
+
+
+
+test_onnx :- www.loom.com/share/b6ea51f66b86478882afd5d172d02147
+
+
+
+server files:- www.loom.com/share/c7c56dbedf4f4c7284a424a8740c9792
+
+
+
+test_server.py :- www.loom.com/share/1a052c1ee470408394261f1bc4e8c161
 

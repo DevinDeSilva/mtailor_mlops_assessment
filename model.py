@@ -4,6 +4,10 @@ import torch
 from torchvision import transforms
 
 class PreprocessingPipeline(object):
+    """
+    Preprocessing Pipeline for the onnx model
+    
+    """
     
     def __init__(self) -> None:
         self.transform_pipeline = transforms.Compose([
@@ -20,6 +24,10 @@ class PreprocessingPipeline(object):
 
 
 class InferenceONNX(object):
+    """
+    Onnx Model
+    
+    """
     def __init__(self,model_path:str) -> None:
         self.model_path = model_path
         self.load_model()
